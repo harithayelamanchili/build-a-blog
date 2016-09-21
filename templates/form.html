@@ -1,0 +1,83 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Blog!</title>
+    </head>
+    <style type="text/css">
+        body
+        {
+            font-family: sans-serif;
+            width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .label
+        {
+            text-align: left;
+            display: block;
+            font-size: 20px;
+        }
+        .error {color: red;}
+        input[type=text]
+        {
+            width: 400px;
+            font-size: 20px;
+            padding: 2px;
+        }
+        textarea
+        {
+            width: 400px;
+            height: 200px;
+            font-size: 17px;
+            font-family: monospace;
+        }
+        input[type=submit]
+        {
+            font-sixe: 24px;
+        }
+
+        hr
+        {
+            margin: 20px auto;
+        }
+        .body + .body
+        {
+            margin-top: 20px;
+        }
+        .blog-title
+        {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .body-body
+        {
+            margin: 0;
+            font-size: 17px;
+        }
+        </style>
+    <body>
+        <h1>Blog!</h1>
+            <form method="post">
+                <label>
+                    <div class="label">
+                        Title
+                    </div>
+                        <input type="text" name="title" value="{{title}}">
+                </label>
+                <label>
+                    <div class="label">
+                        BlogContent
+                    </div>
+                        <textarea name="body">{{body}}</textarea>
+                </label>
+                <div class="error">{{error}}</div>
+                <input type="submit">
+        </form>
+        <hr>
+        {% for body in body1 %}
+            <div class="body">
+                <div class="blog-title">{{body.title}}</div>
+                <pre class="blog-body">{{body.body}}</pre></div>
+        {% endfor %}
+    </body>
+ </html>
