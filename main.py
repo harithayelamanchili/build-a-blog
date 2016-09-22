@@ -42,7 +42,7 @@ class MainPage(Handler):
             a = Body(title = title, body = body)
             a.put()
             id = a.key().id()
-            self.redirect("/newpost")
+            self.redirect("/%s" %id)
         else:
             error = "we need both a title and body!"
             self.render_NewPost(title, body, error)
@@ -67,7 +67,7 @@ class NewPost1(Handler):
 
             # get the id of the new post, so we can render the post's page (via the permalink)
             id = post.key().id()
-            self.redirect("/newpost/%s" %d)
+            self.redirect("/%s" %id)
         else:
             error = "we need both a title and a body!"
             self.render_NewPost(title, body, error)
@@ -85,7 +85,7 @@ class ViewPostHandler(Handler):
         self.response.out.write(response)
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
-    ('/newpost', NewPost1),
-     webapp2.Route('/newpost/<id:\d+>', ViewPostHandler)
+    ('/newpost', MainPage),
+    ('/', NewPost1),
+     webapp2.Route('/<id:\d+>', ViewPostHandler)
 ], debug=True)
